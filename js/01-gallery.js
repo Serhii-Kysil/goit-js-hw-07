@@ -35,10 +35,12 @@ function onImageClick(e) {
     <img src="${e.target.dataset.source}" width="800" height="600">
 `);
   instance.show();
-  const keyDownListener = galleryEl.addEventListener("keydown", (e) => {
+  galleryEl.addEventListener("keydown", keyDownListener);
+
+  function keyDownListener(e) {
     if (e.code === "Escape") {
       instance.close();
       galleryEl.removeEventListener("keydown", keyDownListener);
     }
-  });
+  }
 }
