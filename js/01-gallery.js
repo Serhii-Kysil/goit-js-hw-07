@@ -31,14 +31,14 @@ function onImageClick(e) {
   }
   e.preventDefault();
 
-const instance = basicLightbox.create(`
+  const instance = basicLightbox.create(`
     <img src="${e.target.dataset.source}" width="800" height="600">
-`)
-instance.show()
-galleryEl.addEventListener('keydown',(e)=>{
-	if(e.code ==="Escape"){
-		instance.close();
-	}
-} )
+`);
+  instance.show();
+  const keyDownListener = galleryEl.addEventListener("keydown", (e) => {
+    if (e.code === "Escape") {
+      instance.close();
+      galleryEl.removeEventListener("keydown", keyDownListener);
+    }
+  });
 }
-
